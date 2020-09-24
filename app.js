@@ -54,6 +54,10 @@
         createTodo: function(e) {
             e.preventDefault();
 
+            if (todoField.value.replace(/\s/g, '') === '') {
+                return;
+            }
+
             lastIdCreated += 1;
 
             const todoCreated = {
