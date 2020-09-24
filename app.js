@@ -67,10 +67,18 @@
         toggleTodoComplete: function(e) {
             const targetTodoParent = e.currentTarget;
             const todoId = targetTodoParent.dataset.todoid;
-console.log(targetTodoParent)
+
             targetTodoParent.classList.toggle('complete');
 
             controller.data[todoId].completed = !controller.data[todoId].completed;
+
+            controller.sendData();
+        },
+        deleteTodo: function(e) {
+            const clickedTodo = e.currentTarget;
+            console.log(clickedTodo.parentNode.dataset.todoid);
+            clickedTodo.parentNode.parentNode.removeChild(clickedTodo.parentNode);
+            delete controller.data[clickedTodo.parentNode.dataset.todoid];
 
             controller.sendData();
         },
@@ -79,13 +87,11 @@ console.log(targetTodoParent)
             const isCompleteElement = document.createElement('span');
             const deleteElement = document.createElement('span');
             const todoText = document.createElement('div');
-            const todoId = document.createElement('div');
 
             todoWrapper.classList.add('todo-wrapper');
             isCompleteElement.classList.add('is-complete');
             deleteElement.classList.add('delete-todo');
             todoText.classList.add('todo-text');
-            todoId.classList.add('todo-id');
 
             if (data.completed) {
                 todoWrapper.classList.add('complete');
@@ -93,15 +99,15 @@ console.log(targetTodoParent)
 
             todoWrapper.setAttribute('data-todoId', data.id);
             todoText.innerText = data.todo;
-            todoId.innerText = data.id;
+            deleteElement.innerText = '❌';
+
+            deleteElement.addEventListener('click', this.deleteTodo);
             todoWrapper.addEventListener('click', this.toggleTodoComplete);
 
             todoWrapper.appendChild(isCompleteElement);
             todoWrapper.appendChild(deleteElement);
-            todoWrapper.appendChild(todoId);
             todoWrapper.appendChild(todoText);
             
-
             return todoWrapper;
         },
         populateTodos: function() {
