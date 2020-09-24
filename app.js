@@ -63,6 +63,8 @@
             }
 
             controller.sendData(todoCreated);
+
+            todoField.value = '';
         },
         toggleTodoComplete: function(e) {
             const targetTodoParent = e.currentTarget;
