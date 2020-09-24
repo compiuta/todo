@@ -67,7 +67,7 @@
             todoField.value = '';
         },
         toggleTodoComplete: function(e) {
-            const targetTodoParent = e.currentTarget;
+            const targetTodoParent = e.currentTarget.parentNode;
             const todoId = targetTodoParent.dataset.todoid;
 
             targetTodoParent.classList.toggle('complete');
@@ -78,7 +78,7 @@
         },
         deleteTodo: function(e) {
             const clickedTodo = e.currentTarget;
-            console.log(clickedTodo.parentNode.dataset.todoid);
+            
             clickedTodo.parentNode.parentNode.removeChild(clickedTodo.parentNode);
             delete controller.data[clickedTodo.parentNode.dataset.todoid];
 
@@ -86,7 +86,7 @@
         },
         createTodoElement: function(data) {
             const todoWrapper = document.createElement('div');
-            const isCompleteElement = document.createElement('span');
+            const isCompleteElement = document.createElement('div');
             const deleteElement = document.createElement('span');
             const todoText = document.createElement('div');
 
@@ -104,11 +104,11 @@
             deleteElement.innerText = '❌';
 
             deleteElement.addEventListener('click', this.deleteTodo);
-            todoWrapper.addEventListener('click', this.toggleTodoComplete);
+            isCompleteElement.addEventListener('click', this.toggleTodoComplete);
 
-            todoWrapper.appendChild(isCompleteElement);
+            isCompleteElement.appendChild(todoText);
             todoWrapper.appendChild(deleteElement);
-            todoWrapper.appendChild(todoText);
+            todoWrapper.appendChild(isCompleteElement);
             
             return todoWrapper;
         },
