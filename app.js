@@ -33,7 +33,7 @@
             const dataReturnedKeys = Object.keys(dataReturned);
             const lastIdUsed = dataReturnedKeys[dataReturnedKeys.length - 1];
 
-            if (dataReturned) {
+            if (dataReturnedKeys.length) {
                 controller.data = dataReturned;
                 lastIdCreated = dataReturned[lastIdUsed].id;
                 
