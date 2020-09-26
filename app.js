@@ -93,11 +93,13 @@
             const isCompleteElement = document.createElement('div');
             const deleteElement = document.createElement('span');
             const todoText = document.createElement('div');
+            const editTodoInput = document.createElement('input');
 
             todoWrapper.classList.add('todo-wrapper');
             isCompleteElement.classList.add('is-complete');
             deleteElement.classList.add('delete-todo');
             todoText.classList.add('todo-text');
+            editTodoInput.classList.add('edit-todo-input');
 
             if (data.completed) {
                 todoWrapper.classList.add('complete');
@@ -110,6 +112,7 @@
             deleteElement.addEventListener('click', this.deleteTodo);
             isCompleteElement.addEventListener('click', this.toggleTodoComplete);
 
+            isCompleteElement.appendChild(editTodoInput);
             isCompleteElement.appendChild(todoText);
             todoWrapper.appendChild(deleteElement);
             todoWrapper.appendChild(isCompleteElement);

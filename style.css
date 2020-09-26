@@ -11,6 +11,17 @@
     padding: 20px;
 }
 
+.edit-todo-input {
+    display: none;
+}
+
+.edit-mode .todo-text {
+    display: none;
+}
+
+.edit-mode .edit-todo-input {
+    display: block;
+}
 .todo-field {
     padding: 10px 5px;
     border-radius: 10px;
