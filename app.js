@@ -30,10 +30,10 @@
         },
         setData: function() {
             const dataReturned = model.getData();
-            const dataReturnedKeys = Object.keys(dataReturned);
-            const lastIdUsed = dataReturnedKeys[dataReturnedKeys.length - 1];
+            const dataReturnedKeys = Object.keys(dataReturned) || 0;
 
             if (dataReturnedKeys.length) {
+                const lastIdUsed = dataReturnedKeys[dataReturnedKeys.length - 1];
                 controller.data = dataReturned;
                 lastIdCreated = dataReturned[lastIdUsed].id;
                 
