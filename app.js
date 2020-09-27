@@ -31,7 +31,7 @@
         setData: function() {
             const dataReturned = model.getData();
 
-            if (dataReturned && (Object.keys(dataReturned) > 0)) {
+            if (dataReturned && (Object.keys(dataReturned).length > 0)) {
                 const dataReturnedKeys = Object.keys(dataReturned)
                 const lastIdUsed = dataReturnedKeys[dataReturnedKeys.length - 1];
                 controller.data = dataReturned;
