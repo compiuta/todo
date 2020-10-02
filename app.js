@@ -4,6 +4,8 @@
     const todoContainer = document.querySelector('[data-todoContainer]');
     const createTodoForm = document.querySelector('[data-todoForm]');
     const resetTodoButton = document.querySelector('[data-resetButton]');
+    const deleteListButton = document.querySelector('[data-deleteButton]');
+    const undoDeleteButton = document.querySelector('[data-undoDeleteButton]');
     const todoField = document.querySelector('[data-todoField]');
 
     let lastIdCreated = 0;
@@ -69,6 +71,21 @@
             controller.sendData(todoCreated);
 
             todoField.value = '';
+        },
+        toggleButtons: function(listDeleted) {
+            const dataLength = Object.keys(controller.data).length;
+            
+            if (dataLength > 0) {
+                deleteListButton.classList.remove('hide');
+            } else {
+                deleteListButton.classList.add('hide');
+            }
+
+            if (listDeleted && (dataLength === 0)) {
+                undoDeleteButton.classList.remove('hide');
+            } else {
+                undoDeleteButton.classList.add('hide');
+            }
         },
         toggleTodoComplete: function(e) {
             const targetTodoParent = e.currentTarget.parentNode;
