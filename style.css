@@ -2,6 +2,10 @@
     font-family: 'PT Sans', sans-serif;
 }
 
+.hide {
+    display: none!important;
+}
+
 .todo-wrapper {
     border-radius: 10px;
     border: 1px solid grey;
@@ -62,14 +66,27 @@
     color: white;
 }
 
-.button-reset {
+.button {
     padding: 10px 20px;
-    background-color: rgb(228, 228, 20);
-    color: black;
     font-weight: bold;
     display: inline-block;
     border-radius: 10px;
     text-decoration: none;
+}
+
+.button-reset {
+    background-color: rgb(228, 228, 20);
+    color: #000;
+}
+
+.button-delete {
+    background-color: rgb(247, 16, 16);
+    color: #fff;
+}
+
+.button-undo {
+    background-color: rgb(255, 92, 28);
+    color: #fff;
 }
 
 .button-reset-container {
