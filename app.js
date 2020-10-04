@@ -81,11 +81,11 @@
                 deleteListButton.classList.add('hide');
             }
 
-            if (listDeleted && (dataLength === 0)) {
-                undoDeleteButton.classList.remove('hide');
-            } else {
-                undoDeleteButton.classList.add('hide');
-            }
+            // if (listDeleted && (dataLength === 0)) {
+            //     undoDeleteButton.classList.remove('hide');
+            // } else {
+            //     undoDeleteButton.classList.add('hide');
+            // }
         },
         toggleTodoComplete: function(e) {
             const targetTodoParent = e.currentTarget.parentNode;
@@ -96,6 +96,14 @@
             controller.data[todoId].completed = !controller.data[todoId].completed;
 
             controller.sendData();
+        },
+        deleteList: function() {
+            todoContainer.innerHTML = '';
+
+            controller.data = {};
+            controller.sendData();
+
+            view.toggleButtons();
         },
         deleteTodo: function(e) {
             const clickedTodo = e.currentTarget;
@@ -149,10 +157,13 @@
             });
 
             todoContainer.appendChild(todoFragment);
+
+            view.toggleButtons();
         }
     }
 
     window.addEventListener('load', controller.setData);
     createTodoForm.addEventListener('submit', view.createTodo);
     resetTodoButton.addEventListener('click', controller.resetTodos);
+    deleteListButton.addEventListener('click', view.deleteList);
 })(window);
