@@ -9,6 +9,7 @@
     const todoField = document.querySelector('[data-todoField]');
 
     let lastIdCreated = 0;
+    let listItemsCompleted = false;
 
     const model = {
         getData: function() {
@@ -29,6 +30,7 @@
             }
 
             model.setData();
+            view.toggleButtons();
         },
         setData: function() {
             const dataReturned = model.getData();
@@ -75,10 +77,24 @@
         toggleButtons: function(listDeleted) {
             const dataLength = Object.keys(controller.data).length;
             
+            listItemsCompleted = false;
+
+            Object.keys(controller.data).forEach(function(key, i) {
+                if (controller.data[key].completed) {
+                    listItemsCompleted = true;
+                }
+            });
+            
             if (dataLength > 0) {
                 deleteListButton.classList.remove('hide');
             } else {
                 deleteListButton.classList.add('hide');
+            }
+
+            if (listItemsCompleted) {
+                resetTodoButton.classList.remove('hide');
+            } else {
+                resetTodoButton.classList.add('hide');
             }
 
             // if (listDeleted && (dataLength === 0)) {
@@ -96,6 +112,7 @@
             controller.data[todoId].completed = !controller.data[todoId].completed;
 
             controller.sendData();
+            
         },
         deleteList: function() {
             todoContainer.innerHTML = '';
